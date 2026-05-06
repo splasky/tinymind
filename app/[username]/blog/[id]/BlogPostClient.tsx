@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { BlogPost } from "@/lib/githubApi";
 import { BlogPostContent } from "@/components/BlogPostContent";
+import DisqusComments from "@/components/DisqusComments";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 function decodeContent(content: string): string {
@@ -69,11 +70,24 @@ export default function BlogPostClient({
   const decodedContent = decodeContent(post.content);
   const contentWithoutFrontmatter = removeFrontmatter(decodedContent);
 
+  const disqusShortname = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME || "";
+  const blogUrl = `${process.env.NEXT_PUBLIC_BASE_URL || "https://tinymind.me"}/${username}/blog/${id}`;
+
+  const commentsSection = disqusShortname ? (
+    <DisqusComments
+      shortname={disqusShortname}
+      url={blogUrl}
+      identifier={`public-${username}-${id}`}
+      title={post.title}
+    />
+  ) : null;
+
   return (
     <BlogPostContent
       title={post.title}
       date={post.date}
       content={contentWithoutFrontmatter}
+      comments={commentsSection}
     />
   );
 }

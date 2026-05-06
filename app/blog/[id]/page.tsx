@@ -4,6 +4,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BlogPostContent } from "@/components/BlogPostContent";
+import DisqusComments from "@/components/DisqusComments";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -176,12 +177,25 @@ export default function BlogPost({ params }: { params: { id: string } }) {
     </div>
   );
 
+  const disqusShortname = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME || "";
+  const blogUrl = `${process.env.NEXT_PUBLIC_BASE_URL || "https://tinymind.me"}/blog/${params.id}`;
+
+  const commentsSection = disqusShortname ? (
+    <DisqusComments
+      shortname={disqusShortname}
+      url={blogUrl}
+      identifier={params.id}
+      title={post.title}
+    />
+  ) : null;
+
   return (
     <BlogPostContent
       title={post.title}
       date={post.date}
       content={contentWithoutFrontmatter}
       headerContent={headerContent}
+      comments={commentsSection}
     />
   );
 }

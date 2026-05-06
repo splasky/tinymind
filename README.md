@@ -58,6 +58,8 @@ Your data remains secure:
 - [x] Supports user drag-and-drop image uploads
 - [x] Shareable user main pages (e.g., [tinymind.me/mazzzystar](https://www.tinymind.me/mazzzystar))
 - [x] Chrome Extension to capture thoughts & quotes from anywhere
+- [x] RSS feed support (`/[username]/feed.xml`)
+- [x] Disqus comments integration
 
 ## Creator List
 If you use Tinymind for blogging or writing thoughts, feel free to comment below this issue(https://github.com/mazzzystar/tinymind/issues/18) to share your homepage URL for others to discover your work! 🎉
@@ -71,6 +73,27 @@ Built with cutting-edge technologies:
 - TypeScript
 - NextAuth.js
 - Tailwind CSS
+
+## Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```bash
+# GitHub OAuth (required)
+GITHUB_ID=your_github_client_id
+GITHUB_SECRET=your_github_client_secret
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+
+# Base URL
+NEXT_PUBLIC_BASE_URL=https://tinymind.me
+
+# GitHub Token for public API access (higher rate limits)
+GITHUB_TOKEN=your_github_token
+
+# Disqus shortname for comments (optional)
+NEXT_PUBLIC_DISQUS_SHORTNAME=your_disqus_shortname
+```
 
 ## Contribute
 
