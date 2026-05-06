@@ -8,6 +8,7 @@ interface BlogPostContentProps {
   date: string;
   content: string;
   headerContent?: React.ReactNode;
+  comments?: React.ReactNode;
 }
 
 function BlogPostContentComponent({
@@ -15,24 +16,28 @@ function BlogPostContentComponent({
   date,
   content,
   headerContent,
+  comments,
 }: BlogPostContentProps) {
   return (
-    <Card className="max-w-3xl mx-auto mt-8">
-      <CardHeader className="flex justify-between items-start">
-        <div>
-          <CardTitle className="text-3xl font-bold">{title}</CardTitle>
-          <p className="text-sm text-gray-500">
-            {format(new Date(date), "MMMM d, yyyy")}
-          </p>
-        </div>
-        {headerContent}
-      </CardHeader>
-      <CardContent>
-        <div className="prose max-w-none dark:prose-invert">
-          <MarkdownRenderer content={content} />
-        </div>
-      </CardContent>
-    </Card>
+    <>
+      <Card className="max-w-3xl mx-auto mt-8">
+        <CardHeader className="flex justify-between items-start">
+          <div>
+            <CardTitle className="text-3xl font-bold">{title}</CardTitle>
+            <p className="text-sm text-gray-500">
+              {format(new Date(date), "MMMM d, yyyy")}
+            </p>
+          </div>
+          {headerContent}
+        </CardHeader>
+        <CardContent>
+          <div className="prose max-w-none dark:prose-invert">
+            <MarkdownRenderer content={content} />
+          </div>
+        </CardContent>
+      </Card>
+      {comments}
+    </>
   );
 }
 
