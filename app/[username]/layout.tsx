@@ -17,6 +17,9 @@ export async function generateMetadata({
     manifest: `/api/manifest/${params.username}`,
     alternates: {
       canonical: canonicalUrl,
+      types: {
+        'application/rss+xml': `${canonicalUrl}/feed.xml`,
+      },
     },
     openGraph: {
       title: `${params.username}'s TinyMind Blog`,
