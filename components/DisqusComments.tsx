@@ -62,7 +62,7 @@ export default function DisqusComments({
 
   return (
     <div className="max-w-3xl mx-auto mt-8 mb-8">
-      <div ref={disqusContainer} id="disqus_thread" />
+      <div ref={disqusRef} id="disqus_thread" />
     </div>
   );
 }
