@@ -83,7 +83,7 @@ export async function GET(
 ) {
   const username = params.username;
   const cacheKey = `rss:${username}`;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://tinymind.me';
+  const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || 'https://tinymind.me').replace(/\/+$/, '');
 
   try {
     const cached = rssCache.get(cacheKey);
