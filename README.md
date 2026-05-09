@@ -93,6 +93,9 @@ GITHUB_TOKEN=your_github_token
 
 # Disqus shortname for comments (optional)
 NEXT_PUBLIC_DISQUS_SHORTNAME=your_disqus_shortname
+
+# Google analytics (optional)
+NEXT_PUBLIC_GA_ID=your_google_analytics_id
 ```
 
 ## Contribute
