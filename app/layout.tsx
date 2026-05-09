@@ -12,6 +12,7 @@ import CreateButton from "@/components/CreateButton";
 import { getIconUrls } from "@/lib/githubApi";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
+import { Analytics } from "@vercel/analytics/next";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata");
@@ -86,6 +87,7 @@ export default async function RootLayout({
         <link rel="apple-touch-icon" href={iconPath} />
       </Head>
       <body className={gowun_wodum.className}>
+        <Analytics />
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
             <Header iconUrl={iconPath} />
