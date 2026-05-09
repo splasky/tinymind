@@ -2,6 +2,22 @@
 
 import React, { useEffect, useRef } from "react";
 
+declare global {
+  interface Window {
+    DISQUS?: {
+      reset: (config: { reload: boolean; config: (this: DisqusPage) => void }) => void;
+    };
+  }
+}
+
+interface DisqusPage {
+  page: {
+    url: string;
+    identifier: string;
+    title: string;
+  };
+}
+
 interface DisqusCommentsProps {
   shortname: string;
   url: string;
@@ -25,13 +41,13 @@ export default function DisqusComments({
     if (!disqusContainer) return;
 
     const loadDisqus = () => {
-      if ((window as any).DISQUS) {
-        (window as any).DISQUS.reset({
+      if (window.DISQUS) {
+        window.DISQUS.reset({
           reload: true,
-          config: () => {
-            (window as any).this.page.url = url;
-            (window as any).this.page.identifier = identifier;
-            (window as any).this.page.title = title;
+          config: function (this: DisqusPage) {
+            this.page.url = url;
+            this.page.identifier = identifier;
+            this.page.title = title;
           },
         });
         return;
@@ -42,13 +58,13 @@ export default function DisqusComments({
       s.src = `https://${shortname}.disqus.com/embed.js`;
       s.setAttribute("data-timestamp", Date.now().toString());
       s.onload = () => {
-        if ((window as any).DISQUS) {
-          (window as any).DISQUS.reset({
+        if (window.DISQUS) {
+          window.DISQUS.reset({
             reload: true,
-            config: () => {
-              (window as any).this.page.url = url;
-              (window as any).this.page.identifier = identifier;
-              (window as any).this.page.title = title;
+            config: function (this: DisqusPage) {
+              this.page.url = url;
+              this.page.identifier = identifier;
+              this.page.title = title;
             },
           });
         }
