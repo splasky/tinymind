@@ -3,7 +3,6 @@ import { gowun_wodum } from "@/components/ui/font";
 import "./globals.css";
 import Header from "@/components/Header";
 import { SessionProvider } from "../components/SessionProvider";
-import Script from "next/script";
 import Footer from "@/components/Footer";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
@@ -86,16 +85,6 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="apple-touch-icon" href={iconPath} />
       </Head>
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-      />
-      <Script id="google-analytics">{`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-      `}</Script>
       <body className={gowun_wodum.className}>
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
