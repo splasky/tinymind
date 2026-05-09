@@ -88,13 +88,13 @@ export default async function RootLayout({
       </Head>
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-1MF16MH92D"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
       />
       <Script id="google-analytics">{`
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-1MF16MH92D');
+        gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
       `}</Script>
       <body className={gowun_wodum.className}>
         <NextIntlClientProvider messages={messages}>
