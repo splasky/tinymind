@@ -112,6 +112,7 @@ Built with cutting-edge technologies:
 - NextAuth.js
 - Tailwind CSS
 - Cloudflare Workers via OpenNext
+- Vercel Analytics
 
 ## Deployment
 
@@ -140,17 +141,26 @@ NEXTAUTH_SECRET=your_nextauth_secret
 NEXTAUTH_URL=http://localhost:3000
 
 # Base URL
-NEXT_PUBLIC_BASE_URL=https://tinymind.me
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
 
 # GitHub Token for public API access (higher rate limits)
 GITHUB_TOKEN=your_github_token
 
 # Disqus shortname for comments (optional)
 NEXT_PUBLIC_DISQUS_SHORTNAME=your_disqus_shortname
-
-# Google analytics (optional)
-NEXT_PUBLIC_GA_ID=your_google_analytics_id
 ```
+
+## Deploy on Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+1. Push your fork to GitHub
+2. Go to [vercel.com](https://vercel.com) → **Add New** → **Project**
+3. Import your repo (Vercel auto-detects Next.js)
+4. Add the environment variables above in the Vercel dashboard
+5. Click **Deploy**
+
+Vercel Analytics is already included — view traffic data in your Vercel dashboard after deployment.
 
 ## Contribute
 

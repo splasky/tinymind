@@ -8,6 +8,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { Toaster } from "@/components/ui/toaster";
 import CreateButton from "@/components/CreateButton";
+import { Analytics } from "@vercel/analytics/next";
 
 const SITE_ICON = "/icon.jpg";
 
@@ -82,6 +83,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={gowun_wodum.className}>
+        <Analytics />
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
             <Header />
