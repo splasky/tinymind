@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaRss } from "react-icons/fa";
 import ChromeIcon from "@/components/icons/ChromeIcon";
 import { useTranslations } from "next-intl";
 import { useEffect, useState, useMemo } from "react";
@@ -164,6 +164,17 @@ export default function Header({
             >
               <FaGithub size={24} />
             </Link>
+            {(propUsername || (session?.user as any)?.username) && (
+              <Link
+                href={`/${propUsername || (session?.user as any)?.username}/feed.xml`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-500 hover:text-orange-600 transition-colors"
+                title="RSS Feed"
+              >
+                <FaRss size={22} />
+              </Link>
+            )}
           </div>
         </div>
       </div>
