@@ -8,6 +8,9 @@ declare module "next-auth" {
     accessToken?: string
     expires: string
   }
+  interface User {
+    username?: string
+  }
 }
 
 export async function getSession(): Promise<Session | null> {

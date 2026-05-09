@@ -164,9 +164,9 @@ export default function Header({
             >
               <FaGithub size={24} />
             </Link>
-            {(propUsername || (session?.user as any)?.username) ? (
+            {(propUsername || session?.user?.username) ? (
               <Link
-                href={`/${propUsername || (session?.user as any)?.username}/feed.xml`}
+                href={`/${propUsername || session?.user?.username}/feed.xml`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-orange-500 hover:text-orange-600 transition-colors"
