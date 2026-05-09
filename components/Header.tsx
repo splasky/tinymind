@@ -164,7 +164,7 @@ export default function Header({
             >
               <FaGithub size={24} />
             </Link>
-            {(propUsername || (session?.user as any)?.username) && (
+            {(propUsername || (session?.user as any)?.username) ? (
               <Link
                 href={`/${propUsername || (session?.user as any)?.username}/feed.xml`}
                 target="_blank"
@@ -174,6 +174,8 @@ export default function Header({
               >
                 <FaRss size={22} />
               </Link>
+            ) : (
+              <FaRss size={22} className="text-gray-300" />
             )}
           </div>
         </div>
