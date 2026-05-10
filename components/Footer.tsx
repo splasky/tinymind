@@ -25,11 +25,11 @@ const Footer = () => {
   const repo = "tinymind-blog";
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full border-t border-gray-200 bg-white py-3 text-center text-sm">
-      <div className="container mx-auto px-4 text-gray-400">
+    <footer className="fixed bottom-0 left-0 w-full border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-3 text-center text-sm">
+      <div className="container mx-auto px-4 text-gray-400 dark:text-gray-500">
         <Link
           href={`/${owner}`}
-          className="hover:text-black transition-colors duration-200 mr-4"
+          className="hover:text-black dark:hover:text-white transition-colors duration-200 mr-4"
         >
           {t("myHomepage")}
         </Link>
@@ -38,7 +38,7 @@ const Footer = () => {
           href={`https://github.com/${owner}/${repo}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-black transition-colors duration-200 ml-4"
+          className="hover:text-black dark:hover:text-white transition-colors duration-200 ml-4"
         >
           {t("dataStoredOnGithub")}
         </Link>

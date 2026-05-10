@@ -76,7 +76,12 @@ export default async function RootLayout({
   const { iconPath } = await getIconPaths(session?.accessToken);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: "(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})();"
+        }} />
+      </head>
       <Head>
         <meta
           name="viewport"

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { FaGithub, FaRss } from "react-icons/fa";
 import ChromeIcon from "@/components/icons/ChromeIcon";
+import ThemeToggle from "@/components/ThemeToggle";
 import { useTranslations } from "next-intl";
 import { useEffect, useState, useMemo } from "react";
 import { getUserLogin } from "@/lib/githubApi";
@@ -89,7 +90,7 @@ export default function Header({
   const shouldShowTabs = isLoggedIn || isOnPublicProfilePage;
 
   return (
-    <header className="fixed top-0 left-0 right-0 py-4 bg-card border-b border-gray-100 z-10">
+    <header className="fixed top-0 left-0 right-0 py-4 bg-card border-b border-gray-100 dark:border-gray-800 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link
@@ -113,7 +114,7 @@ export default function Header({
                   <Button
                     variant="ghost"
                     className={`text-lg font-normal border-0 transition-colors duration-150 ${
-                      activeTab === "blog" ? "text-black" : "text-gray-300"
+                      activeTab === "blog" ? "text-black dark:text-white" : "text-gray-300 dark:text-gray-600"
                     }`}
                   >
                     {t("blog")}
@@ -125,7 +126,7 @@ export default function Header({
                   <Button
                     variant="ghost"
                     className={`text-lg font-normal border-0 transition-colors duration-150 ${
-                      activeTab === "thoughts" ? "text-black" : "text-gray-300"
+                      activeTab === "thoughts" ? "text-black dark:text-white" : "text-gray-300 dark:text-gray-600"
                     }`}
                   >
                     {t("thoughts")}
@@ -137,7 +138,7 @@ export default function Header({
                   <Button
                     variant="ghost"
                     className={`text-lg font-normal border-0 transition-colors duration-150 ${
-                      activeTab === "about" ? "text-black" : "text-gray-300"
+                      activeTab === "about" ? "text-black dark:text-white" : "text-gray-300 dark:text-gray-600"
                     }`}
                   >
                     {t("about")}
@@ -147,11 +148,12 @@ export default function Header({
             </div>
           )}
           <div className="flex items-center space-x-3">
+            <ThemeToggle />
             <Link
               href="https://chromewebstore.google.com/detail/tinymind-quick-thoughts/gpfojneflmaoemniapdcgikfehpiocag"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-black transition-colors"
+              className="text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors"
               title="Get Chrome Extension"
             >
               <ChromeIcon size={22} />
@@ -160,7 +162,7 @@ export default function Header({
               href="https://github.com/mazzzystar/tinymind"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:text-gray-500"
+              className="text-black hover:text-gray-500 dark:text-white dark:hover:text-gray-400"
             >
               <FaGithub size={24} />
             </Link>
@@ -175,7 +177,7 @@ export default function Header({
                 <FaRss size={22} />
               </Link>
             ) : (
-              <FaRss size={22} className="text-gray-300" />
+              <FaRss size={22} className="text-gray-300 dark:text-gray-600" />
             )}
           </div>
         </div>
