@@ -3,7 +3,7 @@ import { NextRequest } from 'next/server';
 
 export function GET(
   _request: NextRequest,
-  { params }: { params: { username: string } }
+  { params }: { params: Promise<{ username: string }> }
 ) {
-  redirect(`/api/rss/${params.username}`);
+  return params.then(({ username }) => redirect(`/api/rss/${username}`));
 }

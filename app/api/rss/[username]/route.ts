@@ -79,9 +79,9 @@ function generateRssFeed(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { username: string } }
+  { params }: { params: Promise<{ username: string }> }
 ) {
-  const username = params.username;
+  const { username } = await params;
   const cacheKey = `rss:${username}`;
   const baseUrl = (process.env.NEXT_PUBLIC_BASE_URL || 'https://tinymind.me').replace(/\/+$/, '');
 
