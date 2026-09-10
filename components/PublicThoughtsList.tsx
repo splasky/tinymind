@@ -58,7 +58,7 @@ export default function PublicThoughtsList({
           className="bg-[#f9f9f9] dark:bg-gray-800 shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300 flex flex-col"
         >
           <div className="text-gray-800 dark:text-gray-200 mb-2 prose max-w-none">
-            <MarkdownRenderer content={getDisplayContent(thought)} />
+            <MarkdownRenderer content={getDisplayContent(thought)} enableVideoEmbeds />
 
             {isLongThought(thought.content) && (
               <Button

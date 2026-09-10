@@ -508,7 +508,10 @@ export default function Editor({
               </div>
               {isPreview ? (
                 <div className="p-4 prose max-w-none">
-                  <MarkdownRenderer content={content} />
+                  <MarkdownRenderer
+                    content={content}
+                    enableVideoEmbeds={type !== "about"}
+                  />
                 </div>
               ) : (
                 <Textarea

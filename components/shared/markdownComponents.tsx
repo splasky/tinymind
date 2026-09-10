@@ -1,5 +1,7 @@
 import React, { HTMLAttributes, lazy, Suspense } from "react";
+import type { Components } from "react-markdown";
 import { transformGithubImageUrl } from "@/lib/urlUtils";
+import { VideoEmbed } from "@/components/shared/VideoEmbed";
 
 interface CodeProps extends HTMLAttributes<HTMLElement> {
   inline?: boolean;
@@ -60,4 +62,5 @@ export const markdownComponents = {
       />
     );
   },
-};
+  "video-embed": VideoEmbed,
+} as Components;

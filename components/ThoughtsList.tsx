@@ -237,7 +237,7 @@ export default function ThoughtsList() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <MarkdownRenderer content={getDisplayContent(thought)} />
+              <MarkdownRenderer content={getDisplayContent(thought)} enableVideoEmbeds />
 
               {isLongThought(thought.content) && (
                 <Button

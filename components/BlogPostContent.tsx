@@ -32,7 +32,7 @@ function BlogPostContentComponent({
         </CardHeader>
         <CardContent>
           <div className="prose max-w-none dark:prose-invert">
-            <MarkdownRenderer content={content} />
+            <MarkdownRenderer content={content} enableVideoEmbeds />
           </div>
         </CardContent>
       </Card>

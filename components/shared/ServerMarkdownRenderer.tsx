@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -7,6 +7,8 @@ import { SyntaxHighlighter } from "@/components/shared/syntaxHighlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { transformGithubImageUrl } from "@/lib/urlUtils";
 import { containsMath } from "@/lib/markdown";
+import { remarkVideoEmbeds } from "@/lib/videoEmbeds";
+import { VideoEmbed } from "@/components/shared/VideoEmbed";
 import "katex/dist/katex.min.css";
 
 interface CodeProps extends HTMLAttributes<HTMLElement> {
@@ -17,12 +19,22 @@ interface CodeProps extends HTMLAttributes<HTMLElement> {
 
 const syntaxStyle = tomorrow as { [key: string]: React.CSSProperties };
 
-export function ServerMarkdownRenderer({ content }: { content: string }) {
+export function ServerMarkdownRenderer({
+  content,
+  enableVideoEmbeds = false,
+}: {
+  content: string;
+  enableVideoEmbeds?: boolean;
+}) {
   const math = containsMath(content);
 
   return (
     <ReactMarkdown
-      remarkPlugins={math ? [remarkGfm, remarkMath] : [remarkGfm]}
+      remarkPlugins={[
+        remarkGfm,
+        ...(math ? [remarkMath] : []),
+        ...(enableVideoEmbeds ? [remarkVideoEmbeds] : []),
+      ]}
       rehypePlugins={math ? [rehypeKatex] : []}
       components={{
         code: ({ inline, className, children, ...props }: CodeProps) => {
@@ -66,7 +78,8 @@ export function ServerMarkdownRenderer({ content }: { content: string }) {
             />
           );
         },
-      }}
+        "video-embed": VideoEmbed,
+      } as Components}
     >
       {content}
     </ReactMarkdown>

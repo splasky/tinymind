@@ -21,7 +21,7 @@ export function PublicBlogPostContent({
       </CardHeader>
       <CardContent>
         <div className="prose max-w-none dark:prose-invert">
-          <ServerMarkdownRenderer content={content} />
+          <ServerMarkdownRenderer content={content} enableVideoEmbeds />
         </div>
       </CardContent>
     </Card>
